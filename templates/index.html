@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('../static/minebody.jpeg'); /* Path to your GIF */
+            background-size: cover; /* Cover the entire viewport */
+            background-repeat: no-repeat; /* Prevent repeat */
+            background-attachment: fixed; /* Fixed background */
+            color: white; /* Change text color for better visibility */
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for container */
+            padding: 20px;
+            border-radius: 10px;
+        }
+       .mt-4{
+        text-align: center;
+       }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">RICE DISEASE DETECTION USING CONVOLUTIONAL NEURAL 
+            NETWORKS (CNN) </h1>
+            <br>
+        <form action="/predict" method="post" enctype="multipart/form-data" class="mt-4">
+            <div class="form-group">
+                <label for="file">Upload Rice Leaf Image:</label> 
+                <input type="file" name="file" accept="image/*" required class="form-control-file" id="file"> <br>
+            </div>
+            
+            <br>
+            <button type="submit" class="btn btn-primary">Check DISEASE</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="mt-4">
+            <h2>Detection Result</h2>
+            <div class="alert alert-success" role="alert">
+                <b style="font-size: 45px;">{{ prediction_text }}</b>
+            </div>
+        
+            <h3>Uploaded Image:</h3>
+            <img src="{{ image_path }}" alt="Uploaded Image" class="img-fluid" style="max-width: 500px;">
+        </div>
+        {% endif %}
+    </div>
+
+    <h6 class="text-center">@ShakefireResources</h6>
+</body>
+</html>
